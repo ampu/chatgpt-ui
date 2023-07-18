@@ -1,14 +1,13 @@
 <template>
   <v-dialog
-      v-model="dialog"
-      persistent
+    v-model="dialog"
   >
-    <template v-slot:activator="{ props }">
+    <template #activator="{ props }">
       <v-list-item
-          rounded="xl"
-          v-bind="props"
-          prepend-icon="vpn_key"
-          color="primary"
+        rounded="xl"
+        v-bind="props"
+        prepend-icon="vpn_key"
+        color="primary"
       >
         {{ $t('setApiKey') }}
       </v-list-item>
@@ -24,39 +23,41 @@
           <a target="_blank" href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a>
         </div>
         <div
-            class="mt-5 d-flex align-center"
+          class="mt-5 d-flex align-center"
         >
           <v-text-field
-              v-model="apiKey"
-              label="Api Key"
-              hide-details
-              clearable
-              :disabled="!editable"
+            v-model="apiKey"
+            label="Api Key"
+            hide-details
+            clearable
+            :disabled="!editable"
           ></v-text-field>
           <div
-              v-if="editable"
+            v-if="editable"
           >
             <v-btn class="ml-3" icon="done" @click="save"></v-btn>
           </div>
           <div
-              v-else
+            v-else
           >
             <v-btn class="ml-3" icon="edit" @click="editable = true"></v-btn>
           </div>
         </div>
       </v-card-text>
-      <v-divider></v-divider>
+
+      <VDivider/>
       <v-card-actions>
         <v-alert
-            v-if="warningText"
-            density="compact"
-            type="warning"
-            :text="warningText"
-        ></v-alert>
-        <v-spacer></v-spacer>
+          v-if="warningText"
+          density="compact"
+          type="warning"
+          :text="warningText"
+        />
+
+        <VSpacer/>
         <v-btn
-            color="primary"
-            @click="dialog = false"
+          color="primary"
+          @click="dialog = false"
         >
           Close
         </v-btn>
